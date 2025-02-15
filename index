@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="simon">
-        <div class="title">Simon Dice</div>
-        <button id="startButton">Start</button>
+        <div class="title">Simon Says</div>
+        <button id="startButton">Jugar</button>
         <div class="buttonContainer">
             <div class="square red"></div>
             <div class="square yellow"></div>
@@ -25,8 +25,9 @@
     </div><div id="registro-jugador">
         <h2>Registro de Jugador</h2>
         <form id="formulario-registro">
-          <label for="nombre">Nombre:</label>
+          <label for="nombre">Nombre del jugador:</label>
           <input type="text" id="nombre" name="nombre" required>
           <button type="submit">Guardar</button>
 </body>
 </html> 
+
