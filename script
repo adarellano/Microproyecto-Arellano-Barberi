@@ -6,7 +6,7 @@ class Simon {
     constructor(simonButtons, startButton, round) {
         this.round = 0;
         this.userPosition = 0;
-        this.totalRounds = 10;
+        this.totalRounds = 100;
         this.sequence = [];
         this.speed = 1000;
         this.blockedButtons = true;
@@ -26,71 +26,71 @@ class Simon {
 
     // Inicia el Simon
     init() {
-        this.display.startButton.onclick = () => this.startGame();
+        this.display.startButton.onclick = () => this.comenzar_juego();
     }
 
     // Comienza el juego
-    startGame() {
+    comenzar_juego() {
         this.display.startButton.disabled = true; 
-        this.updateRound(0);
+        this.actualizar_ronda(0);
         this.userPosition = 0;
-        this.sequence = this.createSequence();
+        this.sequence = this.crear_secuencia();
         this.buttons.forEach((element, i) => {
             element.classList.remove('winner');
-            element.onclick = () => this.buttonClick(i);
+            element.onclick = () => this.click(i);
         });
-        this.showSequence();
+        this.mostrar_secuencia();
     }
 
     // Actualiza la ronda y el tablero
-    updateRound(value) {
+    actualizar_ronda(value) {
         this.round = value;
-        this.display.round.textContent = `Round ${this.round}`;
+        this.display.round.textContent = `Ronda ${this.round}`;
     }
 
     // Crea el array aleatorio de botones
-    createSequence() {
-        return Array.from({length: this.totalRounds}, () =>  this.getRandomColor());
+    crear_secuencia() {
+        return Array.from({length: this.totalRounds}, () =>  this.color_randoms());
     }
 
     // Devuelve un número al azar entre 0 y 3
-    getRandomColor() {
+    color_randoms() {
         return Math.floor(Math.random() * 4);
     }
 
     // Ejecuta una función cuando se hace click en un botón
-    buttonClick(value) {
-        !this.blockedButtons && this.validateChosenColor(value);
+    click(value) {
+        !this.blockedButtons && this.validar_color(value);
     }
 
     // Valida si el boton que toca el usuario corresponde a al valor de la secuencia
-    validateChosenColor(value) {
+    validar_color(value) {
         if(this.sequence[this.userPosition] === value) {
             this.buttonSounds[value].play();
             if(this.round === this.userPosition) {
-                this.updateRound(this.round + 1);
+                this.actualizar_ronda(this.round + 1);
                 this.speed /= 1.02;
-                this.isGameOver();
+                this.isgame_over();
             } else {
                 this.userPosition++;
             }
         } else {
-            this.gameLost();
+            this.juego_p();
         }
     }
 
     // Verifica que no haya acabado el juego
-    isGameOver() {
+    isgame_over() {
         if (this.round === this.totalRounds) {
-            this.gameWon();
+            this.juego_g();
         } else {
             this.userPosition = 0;
-            this.showSequence();
+            this.mostrar_secuencia();
         };
     }
 
     // Muestra la secuencia de botones que va a tener que tocar el usuario
-    showSequence() {
+    mostrar_secuencia() {
         this.blockedButtons = true;
         let sequenceIndex = 0;
         let timer = setInterval(() => {
@@ -112,20 +112,20 @@ class Simon {
     }
 
     // Actualiza el simon cuando el jugador pierde
-    gameLost() {
+    juego_p() {
         this.errorSound.play();
         this.display.startButton.disabled = false; 
         this.blockedButtons = true;
     }
 
     // Muestra la animacón de triunfo y actualiza el simon cuando el jugador gana
-    gameWon() {
+    juego_g() {
         this.display.startButton.disabled = false; 
         this.blockedButtons = true;
         this.buttons.forEach(element =>{
             element.classList.add('winner');
         });
-        this.updateRound('🏆');
+        this.actualizar_ronda('🏆');
     }
     registrarNombre(nombre) {
         // 1. Verificar si el nombre ya existe en localStorage
