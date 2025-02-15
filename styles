@@ -32,19 +32,19 @@ body {
 }
 
 .red {
-    background-color: #EE6352;
+    background-color: #eb0909;
 }
 
 .blue {
-    background-color: #08B2E3;
+    background-color: #0f316b;
 }
 
 .green {
-    background-color: #57A773;
+    background-color: #00a72f;
 }
 
 .yellow {
-    background-color: #FFDF64;
+    background-color: #faff5b;
 }
 
 #startButton {
@@ -57,7 +57,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
     color: #fff;
-    background-color: #587792;
+    background-color: #e89654;
     padding: 5px;
 }
 
@@ -67,4 +67,16 @@ body {
 
 .title {
     width: min-content;
+}
+
+#formulario-registro {
+    
+    border: none;
+    font-family: 'Merriweather', serif;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #e89654;
+    padding: 5px;
+
 }
